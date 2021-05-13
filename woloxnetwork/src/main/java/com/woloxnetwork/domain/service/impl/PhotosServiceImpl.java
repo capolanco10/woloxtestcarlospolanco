@@ -9,26 +9,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.woloxnetwork.domain.service.Jsonplaceholder;
-import com.woloxnetwork.domain.service.PostsService;
-import com.woloxnetwork.dto.Posts;
+import com.woloxnetwork.domain.service.PhotosService;
+import com.woloxnetwork.dto.Photos;
 
 /**
  * @autor luxos CACP - 5/02/2021
  *
  */
 @Service
-public class PostsServiceImpl implements Jsonplaceholder<Posts, Integer>{
+public class PhotosServiceImpl implements Jsonplaceholder<Photos, Integer>{
 	
 	@Autowired
-	private PostsService service;
+	private PhotosService service;
 
 	@Override
-	public List<Posts> getAllData() {
+	public List<Photos> getAllData() {
 		return service.getAll();
 	}
 
 	@Override
-	public Posts getDataId(Integer id) {
+	public Photos getDataId(Integer id) {
 		if(id != null) {
 			return service.getId(id);
 		}
@@ -36,12 +36,12 @@ public class PostsServiceImpl implements Jsonplaceholder<Posts, Integer>{
 	}
 
 	@Override
-	public Posts createData(Posts data) {
+	public Photos createData(Photos data) {
 		return service.createData(data);
 	}
 
 	@Override
-	public Posts updateData(Posts data) {
+	public Photos updateData(Photos data) {
 		return service.updateData(data.getId(), data);
 	}
 
@@ -51,10 +51,10 @@ public class PostsServiceImpl implements Jsonplaceholder<Posts, Integer>{
 			service.deleteId(id);
 		}
 	}
-	
-	public void getPostsUsersId(Integer id) {
+
+	public void getPhotosAlbumsId(Integer id) {
 		if(id != null) {
-			service.getPostsUsersId(id);
+			service.getPhotosAlbumsId(id);
 		}
 	}
 

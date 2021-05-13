@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.woloxnetwork.domain.service.impl.PostsServiceImpl;
-import com.woloxnetwork.dto.Posts;
+import com.woloxnetwork.domain.service.impl.UsersServiceImpl;
+import com.woloxnetwork.dto.Users;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -32,37 +32,37 @@ import io.swagger.annotations.ApiOperation;
 public class TestController {
 	
 	@Autowired
-	private PostsServiceImpl postsService;
+	private UsersServiceImpl service;
 	
-	@ApiOperation(value = "Obtener informacion detallada de auditoria de proceso de documento electronico", response = Posts.class)
+	@ApiOperation(value = "Obtener informacion detallada de auditoria de proceso de documento electronico", response = Users.class)
 	@CrossOrigin(origins = "*")
 	@GetMapping(value = "/getalldata", headers="Accept=application/json")
 	public @ResponseBody ResponseEntity<?> getAllData() throws Exception{
-		return new ResponseEntity<>(postsService.getAllData(), HttpStatus.OK);
+		return new ResponseEntity<>(service.getAllData(), HttpStatus.OK);
 	}
 
 	@CrossOrigin(origins = "*")
 	@GetMapping(value = "/getdataid/{id}", headers="Accept=application/json")
 	public @ResponseBody ResponseEntity<?> getDataId(@Validated @PathVariable Integer id) throws Exception{
-		return new ResponseEntity<>(postsService.getDataId(id), HttpStatus.OK);
+		return new ResponseEntity<>(service.getDataId(id), HttpStatus.OK);
 	}
 
 	@CrossOrigin(origins = "*")
 	@PostMapping(value = "/create", headers="Accept=application/json")
-	public @ResponseBody ResponseEntity<?> createData(@Validated @RequestBody Posts post) throws Exception{
-		return new ResponseEntity<>(postsService.createData(post), HttpStatus.OK);
+	public @ResponseBody ResponseEntity<?> createData(@Validated @RequestBody Users post) throws Exception{
+		return new ResponseEntity<>(service.createData(post), HttpStatus.OK);
 	}
 
 	@CrossOrigin(origins = "*")
 	@PutMapping(value = "/update", headers="Accept=application/json")
-	public @ResponseBody ResponseEntity<?> updateData(@Validated @RequestBody Posts post) throws Exception{
-		return new ResponseEntity<>(postsService.updateData(post), HttpStatus.OK);
+	public @ResponseBody ResponseEntity<?> updateData(@Validated @RequestBody Users post) throws Exception{
+		return new ResponseEntity<>(service.updateData(post), HttpStatus.OK);
 	}
 
 	@CrossOrigin(origins = "*")
 	@DeleteMapping(value = "/deleteId/{id}", headers="Accept=application/json")
 	public @ResponseBody ResponseEntity<?> deleteId(@Validated @PathVariable Integer id) throws Exception{
-		postsService.deleteData(id);
+		service.deleteData(id);
 		return new ResponseEntity<>("Delete successfully", HttpStatus.OK);
 	}
 }

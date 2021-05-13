@@ -8,27 +8,27 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.woloxnetwork.domain.service.CommentsService;
 import com.woloxnetwork.domain.service.Jsonplaceholder;
-import com.woloxnetwork.domain.service.PostsService;
-import com.woloxnetwork.dto.Posts;
+import com.woloxnetwork.dto.Comments;
 
 /**
  * @autor luxos CACP - 5/02/2021
  *
  */
 @Service
-public class PostsServiceImpl implements Jsonplaceholder<Posts, Integer>{
+public class CommentsServiceImpl implements Jsonplaceholder<Comments, Integer>{
 	
 	@Autowired
-	private PostsService service;
+	private CommentsService service;
 
 	@Override
-	public List<Posts> getAllData() {
+	public List<Comments> getAllData() {
 		return service.getAll();
 	}
 
 	@Override
-	public Posts getDataId(Integer id) {
+	public Comments getDataId(Integer id) {
 		if(id != null) {
 			return service.getId(id);
 		}
@@ -36,12 +36,12 @@ public class PostsServiceImpl implements Jsonplaceholder<Posts, Integer>{
 	}
 
 	@Override
-	public Posts createData(Posts data) {
+	public Comments createData(Comments data) {
 		return service.createData(data);
 	}
 
 	@Override
-	public Posts updateData(Posts data) {
+	public Comments updateData(Comments data) {
 		return service.updateData(data.getId(), data);
 	}
 
@@ -51,10 +51,10 @@ public class PostsServiceImpl implements Jsonplaceholder<Posts, Integer>{
 			service.deleteId(id);
 		}
 	}
-	
-	public void getPostsUsersId(Integer id) {
+
+	public void getCommentsPostsId(Integer id) {
 		if(id != null) {
-			service.getPostsUsersId(id);
+			service.getCommentsPostsId(id);
 		}
 	}
 
