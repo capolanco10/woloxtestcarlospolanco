@@ -37,6 +37,6 @@ public interface AlbumsService {
     public void deleteId(@PathVariable(name = "id") int id);
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/users/{id}/albums")
-    public void getAlbumsUsersId(@PathVariable(name = "id") int id);
+    public List<Albums> getAlbumsUsersId(@PathVariable(name = "id") int id);
 
 }

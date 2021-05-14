@@ -37,6 +37,6 @@ public interface PhotosService {
     public void deleteId(@PathVariable(name = "id") int id);
 
 	@RequestMapping(method = RequestMethod.GET, value = "/albums/{id}/photos")
-    public void getPhotosAlbumsId(@PathVariable(name = "id") int id);
+    public List<Photos> getPhotosAlbumsId(@PathVariable(name = "id") int id);
 
 }

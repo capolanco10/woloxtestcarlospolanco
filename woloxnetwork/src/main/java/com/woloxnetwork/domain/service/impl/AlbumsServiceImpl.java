@@ -52,10 +52,11 @@ public class AlbumsServiceImpl implements Jsonplaceholder<Albums, Integer>{
 		}
 	}
 	
-	public void getAlbumsUsersId(Integer id) {
+	public List<Albums> getAlbumsUsersId(Integer id) {
 		if(id != null) {
-			service.getAlbumsUsersId(id);
+			return service.getAlbumsUsersId(id);
 		}
+		return null;
 	}
 
 }

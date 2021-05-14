@@ -52,10 +52,11 @@ public class PhotosServiceImpl implements Jsonplaceholder<Photos, Integer>{
 		}
 	}
 
-	public void getPhotosAlbumsId(Integer id) {
+	public List<Photos> getPhotosAlbumsId(Integer id) {
 		if(id != null) {
-			service.getPhotosAlbumsId(id);
+			return service.getPhotosAlbumsId(id);
 		}
+		return null;
 	}
 
 }

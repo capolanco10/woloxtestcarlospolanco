@@ -52,10 +52,11 @@ public class TodosServiceImpl implements Jsonplaceholder<Todos, Integer>{
 		}
 	}
 	
-	public void getTodosUsersId(Integer id) {
+	public List<Todos> getTodosUsersId(Integer id) {
 		if(id != null) {
-			service.getTodosUsersId(id);
+			return service.getTodosUsersId(id);
 		}
+		return null;
 	}
 
 }

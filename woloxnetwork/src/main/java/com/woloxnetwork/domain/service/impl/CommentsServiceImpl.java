@@ -52,10 +52,11 @@ public class CommentsServiceImpl implements Jsonplaceholder<Comments, Integer>{
 		}
 	}
 
-	public void getCommentsPostsId(Integer id) {
+	public List<Comments> getCommentsPostsId(Integer id) {
 		if(id != null) {
-			service.getCommentsPostsId(id);
+			return service.getCommentsPostsId(id);
 		}
+		return null;
 	}
 
 }

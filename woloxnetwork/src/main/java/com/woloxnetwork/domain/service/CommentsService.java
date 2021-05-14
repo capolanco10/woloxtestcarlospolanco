@@ -37,6 +37,6 @@ public interface CommentsService {
     public void deleteId(@PathVariable(name = "id") int id);
 
 	@RequestMapping(method = RequestMethod.GET, value = "/posts/{id}/comments")
-    public void getCommentsPostsId(@PathVariable(name = "id") int id);
+    public List<Comments> getCommentsPostsId(@PathVariable(name = "id") int id);
 
 }

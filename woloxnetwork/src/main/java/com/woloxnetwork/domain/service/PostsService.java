@@ -37,6 +37,6 @@ public interface PostsService {
     public void deleteId(@PathVariable(name = "id") int id);
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/users/{id}/posts")
-    public void getPostsUsersId(@PathVariable(name = "id") int id);
+    public List<Posts> getPostsUsersId(@PathVariable(name = "id") int id);
 	
 }

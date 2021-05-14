@@ -37,6 +37,6 @@ public interface TodosService {
     public void deleteId(@PathVariable(name = "id") int id);
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/users/{id}/todos")
-    public void getTodosUsersId(@PathVariable(name = "id") int id);
+    public List<Todos> getTodosUsersId(@PathVariable(name = "id") int id);
 
 }

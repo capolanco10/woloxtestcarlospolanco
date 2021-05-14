@@ -52,10 +52,11 @@ public class PostsServiceImpl implements Jsonplaceholder<Posts, Integer>{
 		}
 	}
 	
-	public void getPostsUsersId(Integer id) {
+	public List<Posts> getPostsUsersId(Integer id) {
 		if(id != null) {
-			service.getPostsUsersId(id);
+			return service.getPostsUsersId(id);
 		}
+		return null;
 	}
 
 }
