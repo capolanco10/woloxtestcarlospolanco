@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.woloxnetwork.api.FilterDataCommentsApi;
 import com.woloxnetwork.api.FilterDataPermissionsApi;
 import com.woloxnetwork.api.WoloxpermissionsApi;
 import com.woloxnetwork.domain.model.ErrorObject;
@@ -37,7 +38,7 @@ import io.swagger.annotations.ApiOperation;
 public class WoloxPostsController {
 
 	@Autowired
-	private WoloxpermissionsServiceImpl permissionservice;  
+	private WoloxpermissionsServiceImpl permissionservice;
 
 	@ApiOperation(value = "Create Permissions for albums", response = ErrorObject.class)
 	@PostMapping(path = "/createpermissions", produces = {MediaType.APPLICATION_JSON_VALUE }, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -61,6 +62,12 @@ public class WoloxPostsController {
 	@GetMapping(value = "/getuserpermissions", produces = {MediaType.APPLICATION_JSON_VALUE }, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ResponseEntity<?> getUserPermissions(@Valid @RequestBody FilterDataPermissionsApi data) throws Exception{
 		return new ResponseEntity<>(permissionservice.getPermissionsFilter(data), HttpStatus.OK);
+	}
+
+	@ApiOperation(value = "get all comments", response = ErrorObject.class)
+	@GetMapping(value = "/getallcomments", produces = {MediaType.APPLICATION_JSON_VALUE }, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ResponseEntity<?> getAllComments(@Valid @RequestBody FilterDataCommentsApi name) throws Exception{
+		return new ResponseEntity<>(permissionservice.getAllComments(name), HttpStatus.OK);
 	}
 
 }

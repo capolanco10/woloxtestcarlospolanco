@@ -13,12 +13,17 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.woloxnetwork.api.CommentsApi;
+import com.woloxnetwork.api.FilterDataCommentsApi;
 import com.woloxnetwork.api.FilterDataPermissionsApi;
 import com.woloxnetwork.api.WoloxpermissionsApi;
 import com.woloxnetwork.domain.model.ErrorObject;
 import com.woloxnetwork.domain.model.Woloxpermissions;
 import com.woloxnetwork.domain.service.WoloxpermissionsService;
 import com.woloxnetwork.dto.Albums;
+import com.woloxnetwork.dto.Comments;
+import com.woloxnetwork.dto.Posts;
+import com.woloxnetwork.mapper.CommentsMapper;
 import com.woloxnetwork.mapper.WoloxpermissionsMapper;
 
 /**
@@ -33,6 +38,12 @@ public class WoloxpermissionsServiceImpl {
 	
 	@Autowired
 	private AlbumsServiceImpl albumsServiceImpl;
+	
+	@Autowired
+	private CommentsServiceImpl commentsServiceImpl;
+	
+	@Autowired
+	private PostsServiceImpl postsServiceImpl;
 	
 	/**
 	 * method that creates or updates post permissions per user 
@@ -105,6 +116,51 @@ public class WoloxpermissionsServiceImpl {
         }
     }
 
+	@Transactional(readOnly = true)
+    public ErrorObject getAllComments(FilterDataCommentsApi name)throws Exception{
+        try {
+
+        	List<Comments> commentsList = commentsServiceImpl.getAllData();
+        	
+        	if(commentsList != null && commentsList.size() > 0) {
+        		
+        		if(name != null && name.getName() != null) {
+
+        			commentsList = commentsList.stream()
+        	                .filter(line -> line.getName().equals(name.getName()))
+        	                .collect(Collectors.toList());
+        		}
+        		
+        		if(name != null && name.getUserid() != null) {
+        			
+        			List<Posts> postsList = postsServiceImpl.getPostsUsersId(name.getUserid());
+        			
+        			if(postsList != null && postsList.size() > 0) {
+        			
+        				commentsList = commentsList.stream()
+        						.filter(comment -> postsList.stream()
+        								.anyMatch(posts -> 
+        									comment.getPostId().equals(posts.getId())))
+        					    .collect(Collectors.toList());        				
+        			}
+        		}
+        	}
+        	
+        	CommentsMapper mapper = new CommentsMapper();
+    		ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        	
+        	ErrorObject errorObject = new ErrorObject();
+    		errorObject.setStatusCode(200);
+    		errorObject.setMessage("Comments successfully");
+    		errorObject.setUriRequested(ow.writeValueAsString(mapper.mapAsList(commentsList, CommentsApi.class)));
+        	
+        	return errorObject;
+    		
+        }catch (Exception e){
+            throw e;
+        }
+    }
+	
 
 	/**
 	 * return all data permissions
