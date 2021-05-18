@@ -1,5 +1,5 @@
 /**
- * @autor CACP - RFAST9 13/05/2021
+ * @autor CACP - 13/05/2021
  */
 package com.woloxnetwork.domain.service;
 
@@ -12,12 +12,12 @@ import org.springframework.stereotype.Repository;
 import com.woloxnetwork.domain.model.Woloxpermissions;
 
 /**
- * @autor luxos CACP - RFAST9 13/05/2021
+ * @autor luxos CACP - 13/05/2021
  *
  */
 @Repository
 public interface WoloxpermissionsService extends JpaRepository<Woloxpermissions, Integer>{
 	
-	@Query("select s from Woloxpermissions s where s.albumsid = ?1 and s.usersid = ?2")
-	public List<Woloxpermissions> findByAlbumsidUsersid(Integer albumsid, Integer usersid);
+	@Query("select s from Woloxpermissions s where s.albumsid = ?1 and s.readpermission = ?2 and s.writepermission = ?3")
+	public List<Woloxpermissions> findByAlbumsidForPermissions(Integer albumsid, Boolean readpermission, Boolean writepermission);
 }
