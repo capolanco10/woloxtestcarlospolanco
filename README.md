@@ -52,5 +52,5 @@ pertinentes a la documentación del repositorio.
 **DockerHub**
 [Docker hub repository](docker%20pull%20luxos/woloxtest)
 
-**Deployed server**
-[server deployed test](gooogle.com/ttttt)
+`docker run -p 8080:8080 -d luxos/woloxtest`
+
