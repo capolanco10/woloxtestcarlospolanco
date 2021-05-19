@@ -40,7 +40,7 @@ pertinentes a la documentación del repositorio.
 
 [Repositorio Github](https://github.com/capolanco10/woloxtestcarlospolanco)
 
-    git clone https://github.com/capolanco10/woloxtestcarlospolanco
+    git clone https://github.com/capolanco10/woloxtestcarlospolanco.git
 
 **Maven run**
 
